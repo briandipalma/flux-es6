@@ -10,7 +10,8 @@
     "serve": "static -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'"
   },
   "dependencies": {
-    "traceur": "~0.0.42"
+    "traceur": "~0.0.42",
+    "emitr": "0.0.3"
   },
   "devDependencies": {
     "watchy": "~0.4.4",
