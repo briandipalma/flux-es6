@@ -1,0 +1,19 @@
+{
+  "name": "flux-dispatcher",
+  "version": "0.0.0",
+  "main": "out/index.js",
+  "scripts": {
+    "prepublish": "npm run build",
+    "start": "npm run watch & npm run serve",
+    "watch": "watchy -sw src -- npm run build",
+    "build": "traceur --dir src/ out/ --modules=commonjs --sourcemap",
+    "serve": "static -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'"
+  },
+  "dependencies": {
+    "traceur": "~0.0.42"
+  },
+  "devDependencies": {
+    "watchy": "~0.4.4",
+    "node-static": "~0.7.3"
+  }
+}
