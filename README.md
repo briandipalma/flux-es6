@@ -1,1 +1,1 @@
-# flux-dispatcher
+# flux-es6
