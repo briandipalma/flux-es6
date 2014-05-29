@@ -1,5 +1,5 @@
 {
-  "name": "flux-dispatcher",
+  "name": "flux-es6",
   "version": "0.0.0",
   "main": "out/index.js",
   "scripts": {
