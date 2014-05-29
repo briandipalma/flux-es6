@@ -1,15 +1,17 @@
-var promises = [];
-var callbacks = [];
+export default class {
+	constructor() {
+		this.promises = [];
+		this.callbacks = [];
+	}
 
-export default {
     /**
      * Register a Store's callback so that it may be invoked by an action.
      * @param {function} callback The callback to be registered.
      * @return {number} The index of the callback within the _callbacks array.
      */
     register(callback) {
-        return callbacks.push(callback) - 1;
-    },
+        return this.callbacks.push(callback) - 1;
+    }
 
     /**
      * dispatch
@@ -36,23 +38,23 @@ export default {
             );
         }
 
-        promises = callbacks.map(createPromiseForCallback);
+        this.promises = this.callbacks.map(createPromiseForCallback);
 
         // Dispatch to callbacks and resolve/reject promises.
-        callbacks.forEach(dispatchPayload);
+        this.callbacks.forEach(dispatchPayload);
 
-        promises = [];
-    },
+        this.promises = [];
+    }
 
     /**
     * Allows a store to wait for the registered callbacks of other stores
     * to get invoked before its own does.
     */
     waitFor(promiseIndexes, callback) {
-        var selectedPromises = promiseIndexes.map(index => promises[index]);
+        var selectedPromises = promiseIndexes.map(index => this.promises[index]);
 
         return Promise.all(selectedPromises).then(callback);
-    },
+    }
 
     /**
      * A bridge function between the views and the dispatcher, marking the action
@@ -64,7 +66,7 @@ export default {
             source: "VIEW_ACTION",
             action: action
         });
-    },
+    }
 
     handleServerAction(action) {
         this.dispatch({

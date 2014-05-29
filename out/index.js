@@ -5,11 +5,12 @@ Object.defineProperties(exports, {
     }},
   __esModule: {value: true}
 });
-var promises = [];
-var callbacks = [];
-var $__default = {
+var $__default = (($traceurRuntime.createClass)(function() {
+  this.promises = [];
+  this.callbacks = [];
+}, {
   register: function(callback) {
-    return callbacks.push(callback) - 1;
+    return this.callbacks.push(callback) - 1;
   },
   dispatch: function(payload) {
     var rejects = [];
@@ -27,13 +28,14 @@ var $__default = {
         rejects[i](new Error("Dispatcher callback unsuccessful"));
       }));
     }
-    promises = callbacks.map(createPromiseForCallback);
-    callbacks.forEach(dispatchPayload);
-    promises = [];
+    this.promises = this.callbacks.map(createPromiseForCallback);
+    this.callbacks.forEach(dispatchPayload);
+    this.promises = [];
   },
   waitFor: function(promiseIndexes, callback) {
+    var $__0 = this;
     var selectedPromises = promiseIndexes.map((function(index) {
-      return promises[index];
+      return $__0.promises[index];
     }));
     return Promise.all(selectedPromises).then(callback);
   },
@@ -49,4 +51,4 @@ var $__default = {
       action: action
     });
   }
-};
+}, {}));
