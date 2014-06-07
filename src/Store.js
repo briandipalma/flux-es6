@@ -20,4 +20,12 @@ export class Store extends Emitr {
     removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     }
+
+	/**
+	 * Abstract method to be implemented by sub-class.
+	 *
+	 * @param {Object} payload
+	 */
+	handleAction(payload) {
+	}
 }
