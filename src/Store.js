@@ -17,6 +17,14 @@ export class Store extends Emitr {
     /**
      * @param {function} callback
      */
+    addChangeListenerAndNotify(callback, context) {
+        this.on(CHANGE_EVENT, callback, context);
+		callback.apply(context);
+    }
+
+    /**
+     * @param {function} callback
+     */
     removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     }
