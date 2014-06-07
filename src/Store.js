@@ -27,5 +27,6 @@ export class Store extends Emitr {
 	 * @param {Object} payload
 	 */
 	handleAction(payload) {
+		console.error(new Error('Abstract method {Store.handleAction} not implemented.'));
 	}
 }
